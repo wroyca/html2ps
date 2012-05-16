@@ -3405,7 +3405,6 @@ sub Getopts {
   local($optlist)=@_;
   local(@args,$_,$opt,$opts,$rest,$olist,$plist,$found,@popts);
   local($errs)=0;
-  local($[)=0;
   @args=split( /\|/, $optlist );
   for $opt (@args) {
     if(substr($opt,-1,1) ne ':') {$olist.=$opt}
