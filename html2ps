@@ -26,7 +26,7 @@ eval 'exec perl -S $0 "$@"'
 # Set the name of the global configuration file. See the installation notes
 # and manual page for more details on configuration files.
 
-$globrc='/it/sw/share/www/lib/html2ps/html2psrc';
+$globrc='/etc/html2psrc';
 $ug='/it/sw/share/www/lib/html2ps/html2ps.html';
 
 $conf=<<'EOR';
