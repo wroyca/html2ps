@@ -1163,11 +1163,15 @@ $yz
 /hR $hr F div D
 /FE {newpath Fm neg Fm M CP BB IW Fm add Fm L IW Fm add IL Fm add neg L CP BB
  Fm neg IL Fm add neg L closepath} D
+/setglobal where{pop currentglobal t setglobal}if /Gp [f] D /Gm matrix D
+/setglobal where{pop setglobal}if
+/Pg {Gp 0 get{Gp 0 f put gsave Gm setmatrix SA{1 Sf div dup scale}if Cb VC FE
+ fill grestore}if} D
 /LA {PM 0 eq{/IW Wl D /IL hL D}{/IW Wr D /IL hR D}ie /W IW D /LL W D /LS W D
  TU PM 0 eq and{IW $mm F div add SA{Sf div}if 0 translate}
  {PM 0 eq{xL yL}{xR yR}ie translate$rot F SA{Sf mul}if dup scale
  CS CF FS Cf{CA CL get VC}if /Bb f D}ie 0 0 M
- TF not Tc or {Cf{gsave SA{1 Sf div dup scale}if Cb VC FE fill grestore}if}if}D
+ Gm currentmatrix pop Gp 0 TF not Tc or Cf and put}D
 /Pi $p{"text-indent"} Ts mul D
 /SG [$is $opt_i $msc] D
 /Ab $justify{'word'} D
@@ -1284,16 +1288,16 @@ $cd
 /Sg {setgray} d
 /LW {setlinewidth} d
 /S {dup () ne OU and{0 Co R AT 3 eq LB and HF not and A1 0 ne A2 0 ne or and
- {A2 0 32 A1 0 6 -1 roll awidthshow}{show}ie 0 Co neg R}{pop}ie
+ {A2 0 32 A1 0 6 -1 roll Pg awidthshow}{Pg show}ie 0 Co neg R}{pop}ie
  OU PH 3 eq or{/Ms t D}if} D
 /U {OU{gsave CP currentfont /FontInfo get /UnderlinePosition get
  0 E currentfont /FontMatrix get dtransform E pop add newpath M dup SW pop
- CJ 0 RL stroke grestore}if} D
+ CJ 0 RL Pg stroke grestore}if} D
 /B {OU Br 0 gt and{CP Ts neg Ts .33 mul R gsave 0 Sg
- CP newpath Ts Br mul 0 360 arc closepath UI 2 mod 0 eq{stroke}{fill}ie
+ CP newpath Ts Br mul 0 360 arc closepath UI 2 mod 0 eq{Pg stroke}{Pg fill}ie
  grestore M CP E Ts Br 1 add mul sub E BB /Ms t D}if}D
 /NP {Ms TP not or PA and OU and{TP{OR}if f1{mF k2 /mF E D /YC 0 D}if
- TP TU not PM 0 eq or and{showpage}if DU Ip TE not{LA}if 0.6 LW
+ TP TU not PM 0 eq or and{Pg showpage}if DU Ip TE not{LA}if 0.6 LW
  /CI 0 D /TP t D /Hs f D /hl 6 D /Hv 6 D /HI hi D /Ms f D}if Bs XO BO M} D
 /Np {LE sub CP E pop gt PL 0 eq and{NP}if}D
 /Ip {/PN PN 1 add D /Pn RM{1}{4}ie PN Ns D /PM PN SN sub 2 mod D} D
@@ -1303,7 +1307,7 @@ $cd
  pop /S3 E D S1 0 gt{S2 2 mul S1 add S3 2 mul S1 add 2 copy lt{E}if pop}{0}ie
  S2 S3 add 2 copy lt{E}if pop IW .9 mul div dup 1 gt{1 E div}{pop 1}ie}D
 /OR {Df{Sd}if tp not{gsave SA{1 Sf div dup scale}if Fe{Cf{FU VC}if FW LW
- 1 setlinejoin FE stroke}if /YO {60 F div dup 40 gt{pop 40}if}D /cs CS D
+ 1 setlinejoin FE Pg stroke}if /YO {60 F div dup 40 gt{pop 40}if}D /cs CS D
  /cf CF D /CF 0 D /pf PF D /PF f D /Fn FN D /At AT D /AT 0 D /FN EF Hf 1 add
  get D Fz Fs FS ZZ Fc Fz mul Fs FS EU Hf 1 add get dup type /arraytype eq
  Cf and{VC}{pop 0 Sg}ie IW IL neg YO sub M ZZ 1 GP exec dup SW pop neg 0 R Sh
@@ -1314,7 +1318,7 @@ $cd
  Hz mul HS FS IW YO M YY 1 GP exec dup SW pop neg 0 R Sh 0 YO M YY 0 GP exec Sh
  YY 2 GP exec dup SW pop IW E sub 2 div YO M Sh /FN Fn D /AT At D t Pb XO SZ
  SL get neg R /PF pf D grestore /CF 0 D cs cf FS}if}D
-/Sh {dup () ne{CP Hz 4 div sub BB show CP CS add BB}{pop}ie}D
+/Sh {dup () ne{CP Hz 4 div sub BB Pg show CP CS add BB}{pop}ie}D
 /Pb {/OU E D /Ou OU D /PB t D 0 0 M Ba{/Sa save D /BP t D /Fl t D RC /PL 0 D
  /PH 0 D /W IW D /LE IL .7 mul D /EO 0 D SI ZF /YA 0 D /BO 0 D /C1 () D
  BA 0 Ts neg R Bb{Xl Yl Xh Yh}if Bb CP Sa restore M
@@ -1413,7 +1417,7 @@ $defs$fontdef$reenc
  /C1 E D dup length 1 sub get 32 eq /TB E D /Bw BW D}{pop pop}ie} D
 /BG {AI LG BC add add 0 eq} D
 /ON {OU{Ty AR AI NN get dup 1 add Ln Ns Ty 2 mod 0 eq{(.  )}{(\\)  )}ie join
- dup SW pop neg 0 R CP E 0 lt{0 E M}{pop}ie CP BB show /Ms t D}if} D
+ dup SW pop neg 0 R CP E 0 lt{0 E M}{pop}ie CP BB Pg show /Ms t D}if} D
 /Ln {AR AI 3 -1 roll put}D
 /SP {dup CI lt BP not and{dup CI sub 0 E R /CI E D}{pop}ie} D
 /BN {PF{WR /HM f D}{BT NL}ie} D
@@ -1435,8 +1439,8 @@ $defs$fontdef$reenc
 /BE {E PO{EP}{BN}ie Ts 4 mul Np neg SP} D
 /HR {/Aw W EO sub D /RW E dup 0 gt{Aw mul}{neg}ie dup Aw gt{pop Aw}if D /RZ E D
  E BN Ts neg SP 1 sub 2 div Aw RW sub mul EO add CP E pop M PF{0 Ps neg R}if
- 0 Np OU{gsave RZ LW Cf{Hc VC}{0 Sg}ie CP BB RW 0 RL CP BB stroke grestore}if
- /CI 0 D /BP f D PF not{Ts neg SP}if /Ms t D} D
+ 0 Np OU{gsave RZ LW Cf{Hc VC}{0 Sg}ie CP BB RW 0 RL CP BB Pg stroke
+ grestore}if /CI 0 D /BP f D PF not{Ts neg SP}if /Ms t D} D
 /AD {I NL EG 14 get dup 0 lt{pop AT}if NA /AE t D Tm 14 get Ts mul neg SP
  Cf{EU 14 get dup -1 eq{pop CA CL get}if Sc}if} D
 /DA {BN ()ES OA /AE f D ()Ec Bm 14 get Ts mul neg SP} D
@@ -1516,10 +1520,11 @@ $defs$fontdef$reenc
 /sM {/C1 C1 ( k1 ) join D}d
 /eM {/C1 C1 ( k2 ) join D}d
 /k1 {/YC CP E pop Ts add D /mF t D /f1 t D}d
-/k2 {gsave 3 LW -9 CP E pop Ts 0.2 mul sub M -9 YC L stroke grestore /mF f D}d
+/k2 {gsave 3 LW -9 CP E pop Ts 0.2 mul sub M -9 YC L Pg stroke grestore
+ /mF f D}d
 /Ac {/AC E D WB}d
 /Ca {eA{( \\()join AC join(\\) )join}if WB}d
-/s {OU{gsave 0 CS .25 mul R dup SW pop CJ 0 RL stroke grestore}if}D
+/s {OU{gsave 0 CS .25 mul R dup SW pop CJ 0 RL Pg stroke grestore}if}D
 /CJ {AT 3 eq LB and{E dup dup length 1 sub A1 mul E
  {( ) search{pop pop E A2 add E}{pop exit}ie}loop 3 -1 roll add
  W CP pop sub 2 copy gt{E}if pop}if}D
@@ -1559,10 +1564,10 @@ $defs$fontdef$reenc
  TY 4 eq{OX X IS mul add OY FY add YS sub Y IS mul sub}
  {/FY YS D CP MB sub 2 copy /OY E D /OX E D}ie
  translate K2 0 ge{/DP AZ K2 get D /BV BM K2 get D XS YS scale /N 0 D XW YW DP
- [XW 0 0 YN 0 YW] {IP} FC K2 get 1 eq{image}{f 3 colorimage}ie}
- {EX}ie grestore XS 0 R /Ms t D} D
+ [XW 0 0 YN 0 YW] {IP} FC K2 get 1 eq{Pg image}{f 3 Pg colorimage}ie}
+ {Pg EX}ie grestore XS 0 R /Ms t D} D
 /FM {gsave 0 Sg CP MB sub translate XS neg 0 M 0 YS RL XS 0 RL 0 YS neg RL
- XS neg 0 RL stroke grestore} D
+ XS neg 0 RL Pg stroke grestore} D
 /NA {/AT E D /AL AL 1 add D AV AL AT put} D
 /OA {AL 0 gt{/AL AL 1 sub D /AT AV AL get D}if} D
 /D1 {/BR {CP E pop E BN Mb{CP E pop eq{0 YI R}if}{pop}ie} D
@@ -1574,13 +1579,13 @@ $defs$fontdef$reenc
 /TN {0 eq{E EA PF HF or not XR and{HN E get Xr}{pop}ie}
  {OU{Tn 0 ge{() BN}if /Tn E D}{pop}ie WB}ie} D
 /NT {OU LB not and Tn 0 ge and{PL 0 eq{Ms not{CS CF FS}if CP dup
- /y E YA sub D W 9 sub CS -1.8 mul XO L1 add 2 add{y M (.) show}for
- HN Tn get dup SW pop IW E sub y M show CP BB M}if /Tn -1 D}if} D
+ /y E YA sub D W 9 sub CS -1.8 mul XO L1 add 2 add{y M (.) Pg show}for
+ HN Tn get dup SW pop IW E sub y M Pg show CP BB M}if /Tn -1 D}if} D
 /Ld {/DN E D HN DN Pn put [/View [/XYZ -4 Fl{PS}{CP YA add US E pop}ie null]
  /Dest DN ST cvs cvn /DEST pdfmark} D
 /C {ND 1 eq{1 sub}if TI mul /XO E D NL Nf not{pop()}if 0 3 -1 roll 1 A} D
 /OP {BP not{NP}if PN 2 mod 0 eq{/Ms t D NP}if}D
-/Ep {Xp PN 2 mod 0 eq and OU and{/Pn (-) D showpage /PM 1 D LA}if}D
+/Ep {Xp PN 2 mod 0 eq and OU and{/Pn (-) D Pg showpage /PM 1 D LA}if}D
 /Dg [73 86 88 76 67 68 77] D
 /Rd [0 [1 1 0][2 1 0][3 1 0][2 1 1][1 1 1][2 2 1][3 3 1][4 4 1][2 1 2]] D
 /Ns {/m E D /c E 32 mul D /j m 1000 idiv D /p j 12 add string D
@@ -1606,8 +1611,8 @@ $defs$fontdef$reenc
  /Border [0 0 0] Rn type /nametype eq{/Dest Rn}
  {/Action [/Subtype /URI /URI Rn] Cd}ie /ANN pdfmark} D
 /XP {[{/Z Bz 2 div D Z 0 R Z Z RL Z neg Z RL Z neg Z neg RL Z Z neg RL
- Fi cH 1 eq and{fill}if} {Bz 0 RL 0 Bz RL Bz neg 0 RL 0 Bz neg RL
- Fi cH 1 eq and{fill}if} {0 -5 R Bz 0 RL 0 21 RL Bz neg 0 RL 0 -21 RL}]} D
+ Fi cH 1 eq and{Pg fill}if} {Bz 0 RL 0 Bz RL Bz neg 0 RL 0 Bz neg RL
+ Fi cH 1 eq and{Pg fill}if} {0 -5 R Bz 0 RL 0 21 RL Bz neg 0 RL 0 -21 RL}]} D
 /MS {/Sm E D WB}D
 /O {BN()Sm BX} D
 /O {BN()0 Sm BX} D
@@ -1620,12 +1625,12 @@ $defs$fontdef$reenc
  ( ) Pd /PF f D Bt 2 lt{YA CS .8 mul lt{/YA CS .8 mul D}if}
  {YB 5 lt{/YB 5 D}if YA 21 lt{/YA 21 D}if}ie /CI 0 D} D
 /Bx {dup 2 eq{E /Bz E D}{E /cH E D /Bz CS .8 mul D}ie
- OU {gsave 0 Sg XP E get exec stroke grestore}{pop}ie Bz 0 R /Ms t D}D
+ OU {gsave 0 Sg XP E get exec Pg stroke grestore}{pop}ie Bz 0 R /Ms t D}D
 /SD {FD 4 mul Dy add DZ NF newpath 0 0 M DX t charpath pathbbox
  3 -1 roll sub /DY E D E dup /X1 E D sub WM mul WX DY mul add WM DG mul E div
  /DF E D /DR WX DF mul DY mul WM div 2 div D} d
 /Sd {gsave 0 IL Di mul neg translate IL IW atan Di 0 eq{neg}if rotate
- FD 4 mul Dy add DZ NF DR X1 sub DY 2 div neg M cD VC DX show grestore} d
+ FD 4 mul Dy add DZ NF DR X1 sub DY 2 div neg M cD VC DX Pg show grestore} d
 /Pt {/tp t D Tp{NP /Pn (TP) D 0 Tt neg R Th BN NP Ep ET RC ZF}if /tp f D} D
 /RC {/AI 0 D /LG 0 D /BC 0 D /UI 0 D /PF f D /Cc 0 D /cC 0 D /Dc 10 array D
  /NR [0 1 9{pop 0}for] D /La Ds D /AR 10 array D /TR 10 array D /AV 30 array D
@@ -2007,7 +2012,7 @@ $tbl=<<EOT;
    /EO xo xoff add left add D SI
    Cf{
     gsave CB VC xo xoff add ycur yoff add M
-    0 hight neg RL width 0 RL 0 hight RL width neg 0 RL fill
+    0 hight neg RL width 0 RL 0 hight RL width neg 0 RL Pg fill
     grestore
    }if
    ctype 1 eq{() BD}if
@@ -2060,13 +2065,13 @@ $tbl=<<EOT;
       0 hight neg icol cspan add 1 sub ncol lt
        {cdesc icol 1 add get 4 get dup rules 3 le{1 eq}{pop t}ie
         {1 eq{0.8}{0.3}ie
-        LW RL CP stroke M}{pop R}ie}{R}ie
+        LW RL CP Pg stroke M}{pop R}ie}{R}ie
       irow nhead nfoot add 1 sub ne nfoot 0 eq or
        {irow rspan add 1 sub nrow lt
        {rdesc irow rspan add get 3 get}{nfoot 0 eq{0}{1}ie}ie
        dup rules 2 mod 0 eq{1 eq}{pop t}ie
        {1 eq irow rspan add nhead eq or irow rspan add row eq nfoot 0 gt and or
-        {0.8}{0.3}ie LW width neg 0 RL CP stroke M}{pop}ie}if
+        {0.8}{0.3}ie LW width neg 0 RL CP Pg stroke M}{pop}ie}if
      }if
      /xoff xoff cdesc icol get 0 get add D
     }for
@@ -2083,7 +2088,7 @@ $tbl=<<EOT;
    twidth 0 frame 3 eq frame 4 eq or frame 8 ge or{RL}{R}ie CP BB
    0 yoff neg frame 6 ge{RL}{R}ie
    twidth neg 0 frame 2 eq frame 4 eq or frame 8 ge or{RL}{R}ie
-   closepath stroke
+   closepath Pg stroke
    grestore
    /Ms t D
   }if
@@ -2265,7 +2270,7 @@ Hr length 0 gt{[/PageMode /UseOutlines /DOCVIEW pdfmark}if
 ZF /FN Fp D Ps 0 FS /WC Wf{( )}{<A1A1>}ie SW pop D
 ET RC ZF
 $sd$rfs$tdef$top$P3
-/TE t D NP /OU t D TU PM 1 eq and{/Pn () D showpage}if end restore
+/TE t D NP /OU t D TU PM 1 eq and{/Pn () D Pg showpage}if end restore
 EOD
 
 if(($first || $opt_R) && $xref{'passes'}) {
